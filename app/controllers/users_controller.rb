@@ -11,6 +11,7 @@ def show
 end
 
 def create
+  puts params
   uid = params[:uid]
   train = params[:train]
   User.create!({uid: uid, train: train})
