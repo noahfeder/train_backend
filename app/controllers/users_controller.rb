@@ -11,10 +11,12 @@ def show
 end
 
 def create
-  puts params
   uid = params[:uid]
   train = params[:train]
-  User.create!({uid: uid, train: train})
+  @user = User.new
+  @user.uid = uid
+  @user.train = train
+  @user.save
   render json: {error: !User.find_by_uid(uid).nil?}
 end
 
