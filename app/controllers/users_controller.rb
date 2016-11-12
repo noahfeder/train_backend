@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+skip_before_action :verify_authenticity_token
 def show
   @uid = params[:uid]
   @user = User.find_by_uid(@uid)
