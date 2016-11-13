@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: train_bankend_production
-  username: train_bankend
-  password: <%= ENV['TRAIN_BANKEND_DATABASE_PASSWORD'] %>
+  url: <%= ENV['POSTGRESQL_URL'] %>
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
