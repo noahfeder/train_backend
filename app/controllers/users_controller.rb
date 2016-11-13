@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 skip_before_action :verify_authenticity_token
 def show
-  @uid = params[:uid]
+  @uid = params[:id]
   @user = User.find_by_uid(@uid)
   if @user.nil?
     render json: {error: true}
@@ -11,7 +11,7 @@ def show
 end
 
 def create
-  uid = params[:uid]
+  uid = params[:id]
   train = params[:train]
   @user = User.new
   @user.uid = uid
