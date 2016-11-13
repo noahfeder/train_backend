@@ -1,5 +1,5 @@
 class TrainsController < ApplicationController
-
+# all functions taken from JohnRBell https://github.com/JohnrBell/mta_api
   def index
     train_data = get_train_data(params['long'])
     render json: train_data
@@ -14,7 +14,6 @@ class TrainsController < ApplicationController
 
 private
 
-# all functions taken from JohnRBell https://github.com/JohnrBell/mta_api
   def get_train_data(request_long) #this gets the train data and puts it into a simple, usable hash.
     group_count = 10 #this is how many train groups the xml file has. i.e. ABC is one group.
 
