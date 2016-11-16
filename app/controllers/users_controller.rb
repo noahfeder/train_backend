@@ -12,7 +12,7 @@ def show
 end
 
 def create
-  @uid = params[:id]
+  @uid = params[:uid]
   @train = params[:train]
   @user = User.create({uid: @uid, train: @train})
   puts "Train: #{@user.train}" if !@user.nil?
