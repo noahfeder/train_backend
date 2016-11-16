@@ -5,8 +5,7 @@ skip_before_action :verify_authenticity_token
 def show
   @uid = params[:id]
   @user = User.find_by(uid: @uid)
-  puts @user
-  res = @user.nil? ? { error: true } : { error: false, train: @user.train }
+  res = {user: @user.uid, train: @user.train }
   puts res
   render json: res
 end
