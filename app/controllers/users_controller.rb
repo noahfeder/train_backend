@@ -5,11 +5,9 @@ skip_before_action :verify_authenticity_token
 def show
   @uid = params[:id]
   @user = User.find_by_uid(@uid)
-  if @user.nil?
-    render json: { error: true }
-  else
-    render json: { error: false, train: @user.train }
-  end
+  res = @user.nil? ? { error: true } : { error: false, train: @user.train }
+  puts res
+  render json: res
 end
 
 def create
@@ -19,6 +17,7 @@ def create
   @user.uid = uid
   @user.train = train
   @user.save
+  puts @user
   render json: { error: !User.find_by_uid(uid).nil? }
 end
 
@@ -28,6 +27,7 @@ def update
   @user = User.find_by_uid(uid)
   @user.train = train
   @user.save
+  puts @user
   render json: { error: !User.find_by_uid(uid).nil? }
 end
 
