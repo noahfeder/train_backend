@@ -5,7 +5,8 @@ skip_before_action :verify_authenticity_token
 def show
   @uid = params[:id]
   @user = User.find_by(uid: @uid)
-  res = {user: @user.uid, train: @user.train }
+  puts @user
+  res = @user.nil? ? { error: true } : { error: false, train: @user.train }
   puts res
   render json: res
 end
@@ -14,7 +15,7 @@ def create
   @uid = params[:id]
   @train = params[:train]
   @user = User.create({uid: @uid, train: @train})
-  puts @user.to_s
+  puts "Train: #{@user.train}" if !@user.nil?
   render json: { error: !@user.nil? }
 end
 
