@@ -15,7 +15,7 @@ def create
   @train = params[:train]
   @user = User.create({uid: @uid, train: @train})
   puts @user.to_s
-  render json: { error: !User.find_by_uid(uid).nil? }
+  render json: { error: !@user.nil? }
 end
 
 def update
