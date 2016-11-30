@@ -23,18 +23,23 @@ def update
   uid = params[:id]
   train = params[:train]
   @user = User.find_by(uid: uid)
-  @user.train = train
+  if @user.nil?
+    @user = User.create({train: train, uid: uid})
+  else
+    @user.train = train
+  end
   @user.save
   puts @user
-  render json: { error: !@user.nil? }
+  render json: { error: false }
 end
 
 def destroy
   uid = params[:id]
   @user = User.find_by(uid: uid)
-  @user.destroy
-  puts @user
-  render json: { error: @user.nil? }
+  if !@user.nil?
+    @user.destroy
+  end
+  render json: { error: false }
 end
 
 end
